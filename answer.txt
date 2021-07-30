@@ -1,0 +1,55 @@
+Task 2.
+Question1: What test design techniques would you use to test a feature which grants user access
+to certain resources depending on their age? For example: if a user is older than XX then
+access granted.
+
+Answer: BVA (Boundary value analysis)
+In this scenario BVA mainly focuses on testing both valid and invalid input parameters to grant the access.
+The boundary values come as follows:
+Access NOT granted{<=XX}  #user with age lesser than or equal to XX
+Access granted Check{>XX}  #user with age older than XX
+
+In case of min and max are mentioned then, as per BVA
+Invalid Boundary Check   { Min-1 ; Max+1 }   
+Valid Boundary Check   {Min; Min+1 ;Max-1;Max }
+*******************************************************************************************************************
+Question2:
+2. Given two web services: A and B. Service A is calling service B and expects a response
+with HTTP code 200 (OK).
+Sometimes due to internal problems in service B, it responds with HTTP code 500
+(Internal server error).
+Your task is to test that service A handles this 500 response gracefully (doesn't crash and logs the error).
+How would you do it?
+
+Answer:
+Service A handles the HTTP response code by asserting the response status code and raise the HTTPError.
+
+Example: In the case of status code = 500 (instead of 200)
+raise HTTPError(f' Failed to decode encoded text:  {encoded_text}')
+requests.exceptions.HTTPError:  Failed to decode encoded text:  SFRUUEJJTiBpcyBhd2Vzb21l
+
+Service A raise handles this, and make sure there is no crash due to Internal server error.
+
+*******************************************************************************************************************
+3. Read the description of the following service and solve the assignment:
+
+Assignment:
+After considering the problem described above, which of the solutions proposed below do
+you consider the most appropriate to approach the automation of the scenarios above?
+a- Test Transfer-Service against a mock of Account-Guard-Service and do not use
+the real Account-Guard-Service at all as it must be properly tested by its
+provider.
+b- Do not automate this case as it is dependent on an external service and may fail
+due to uncontrollable circumstances.
+c- Test Transfer-Service using a mock of Account-Guard-Service during the
+normal CI phase and add a scheduled job that runs between 1:00 am to 3:00 am to
+test against the real Account-Guard-Service.
+d- Add a scheduled job that runs between 1:00 am to 3:00 am to test against the real
+Account-Guard-Service and exclude these tests completely from the normal CI
+pipeline.
+
+My Answer:
+c- Test Transfer-Service using a mock of Account-Guard-Service during the
+normal CI phase and add a scheduled job that runs between 1:00 am to 3:00 am to
+test against the real Account-Guard-Service.
+*******************************************************************************************************************
