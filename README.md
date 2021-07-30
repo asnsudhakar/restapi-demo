@@ -26,3 +26,13 @@ HTTPError - HTTPError allows the program to handle the exception without termina
 Example use: Go to "C:\Python36\Scripts"
 
 pip install requests -  to install the python modules
+
+
+## Files Detail
+
+api.py - contains the test cases
+
+HTTPBinService.py - module file to run the test cases
+
+answer.txt - Contains the answer for the questions asked in the task.
+
